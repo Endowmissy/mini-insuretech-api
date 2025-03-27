@@ -19,6 +19,16 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
+      product_id: {
+        type: Sequelize.UUID,
+        allowNull: false,
+        references: {
+          model: 'products',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      },
       total_amount: {
         type: Sequelize.DECIMAL(10, 2),
         allowNull: false,

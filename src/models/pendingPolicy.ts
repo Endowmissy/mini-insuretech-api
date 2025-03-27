@@ -2,18 +2,16 @@ import {
   BeforeCreate,
   BelongsTo,
   Column,
-  CreatedAt,
   ForeignKey,
   Model,
   Table,
-  UpdatedAt,
 } from 'sequelize-typescript';
 import { DataType } from 'sequelize-typescript';
 import { v4 as uuidv4 } from 'uuid';
 import { Plan } from './plan.model';
 import { Product } from './product.model';
 
-@Table({ tableName: 'products', timestamps: true, underscored: true })
+@Table({ tableName: 'products', timestamps: false })
 export class PendingPolicy extends Model {
   @Column({
     type: DataType.UUID,
@@ -28,34 +26,29 @@ export class PendingPolicy extends Model {
     type: DataType.UUID,
     allowNull: false,
     defaultValue: DataType.UUIDV4,
-    field: 'plan_id',
   })
-  planId: string;
+  plan_id: string;
 
   @ForeignKey(() => Product)
   @Column({
     type: DataType.UUID,
     allowNull: false,
     defaultValue: DataType.UUIDV4,
-    field: 'product_id',
   })
-  productId: string;
+  product_id: string;
 
   @Column({
     type: DataType.BOOLEAN,
     allowNull: false,
     defaultValue: false,
-    field: 'is_used',
   })
-  isUsed: boolean;
+  is_used: boolean;
 
-  @CreatedAt
-  @Column({ type: DataType.DATE, field: 'created_at' })
-  createdAt: Date;
+  @Column({ type: DataType.DATE })
+  created_at: Date;
 
-  @UpdatedAt
-  @Column({ type: DataType.DATE, field: 'updated_at' })
-  updatedAt: Date;
+  @Column({ type: DataType.DATE })
+  updated_at: Date;
 
   @BelongsTo(() => Plan)
   plan: Plan;

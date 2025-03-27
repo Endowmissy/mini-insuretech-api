@@ -1,17 +1,15 @@
 import {
   BeforeCreate,
   Column,
-  CreatedAt,
   HasMany,
   Model,
   Table,
-  UpdatedAt,
 } from 'sequelize-typescript';
 import { DataType } from 'sequelize-typescript';
 import { v4 as uuidv4 } from 'uuid';
 import { Product } from './product.model';
 
-@Table({ tableName: 'product_categories', timestamps: true, underscored: true })
+@Table({ tableName: 'product_categories', timestamps: false })
 export class ProductCategory extends Model {
   @Column({
     type: DataType.UUID,
@@ -27,13 +25,11 @@ export class ProductCategory extends Model {
   @Column({ type: DataType.STRING, allowNull: false })
   description: string;
 
-  @CreatedAt
-  @Column({ type: DataType.DATE, field: 'created_at' })
-  createdAt: Date;
+  @Column({ type: DataType.DATE })
+  created_at: Date;
 
-  @UpdatedAt
-  @Column({ type: DataType.DATE, field: 'updated_at' })
-  updatedAt: Date;
+  @Column({ type: DataType.DATE })
+  updated_at: Date;
 
   @HasMany(() => Product)
   product: Product[];

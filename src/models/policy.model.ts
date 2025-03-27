@@ -2,11 +2,9 @@ import {
   BeforeCreate,
   BelongsTo,
   Column,
-  CreatedAt,
   ForeignKey,
   Model,
   Table,
-  UpdatedAt,
 } from 'sequelize-typescript';
 import { DataType } from 'sequelize-typescript';
 import { v4 as uuidv4 } from 'uuid';
@@ -14,7 +12,7 @@ import { Product } from './product.model';
 import { User } from './user.model';
 import { PendingPolicy } from './pendingPolicy';
 
-@Table({ tableName: 'policies', timestamps: true, underscored: true })
+@Table({ tableName: 'policies', timestamps: false })
 export class Policy extends Model {
   @Column({
     type: DataType.UUID,
@@ -29,38 +27,33 @@ export class Policy extends Model {
     type: DataType.UUID,
     allowNull: false,
     defaultValue: DataType.UUIDV4,
-    field: 'user_id',
   })
-  userId: string;
+  user_id: string;
 
   @ForeignKey(() => Product)
   @Column({
     type: DataType.UUID,
     allowNull: false,
     defaultValue: DataType.UUIDV4,
-    field: 'product_id',
   })
-  productId: string;
+  product_id: string;
 
   @ForeignKey(() => PendingPolicy)
   @Column({
     type: DataType.UUID,
     allowNull: false,
     defaultValue: DataType.UUIDV4,
-    field: 'pending_policy_id',
   })
-  pendingPolicyId: string;
+  pending_policy_id: string;
 
-  @Column({ type: DataType.STRING, allowNull: false, field: 'policy_number' })
-  policyNumber: string;
+  @Column({ type: DataType.STRING, allowNull: false })
+  policy_number: string;
 
-  @CreatedAt
-  @Column({ type: DataType.DATE, field: 'created_at' })
-  createdAt: Date;
+  @Column({ type: DataType.DATE })
+  created_at: Date;
 
-  @UpdatedAt
-  @Column({ type: DataType.DATE, field: 'updated_at' })
-  updatedAt: Date;
+  @Column({ type: DataType.DATE })
+  updated_at: Date;
 
   @BelongsTo(() => User)
   user: User;
