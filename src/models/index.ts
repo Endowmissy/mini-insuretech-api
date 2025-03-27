@@ -2,7 +2,7 @@
 
 import { Sequelize } from 'sequelize';
 const env = process.env.NODE_ENV || 'development';
-import { configOptions } from '../config/sequelize.config';
+import { configOptions } from '../config/config';
 const config = configOptions[env];
 
 let sequelize: Sequelize;
