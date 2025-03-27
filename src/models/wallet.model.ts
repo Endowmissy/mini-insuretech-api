@@ -2,17 +2,15 @@ import {
   BeforeCreate,
   BelongsTo,
   Column,
-  CreatedAt,
   ForeignKey,
   Model,
   Table,
-  UpdatedAt,
 } from 'sequelize-typescript';
 import { DataType } from 'sequelize-typescript';
 import { v4 as uuidv4 } from 'uuid';
 import { User } from './user.model';
 
-@Table({ tableName: 'users', timestamps: true, underscored: true })
+@Table({ tableName: 'users', timestamps: false })
 export class Wallet extends Model {
   @Column({
     type: DataType.UUID,
@@ -27,20 +25,17 @@ export class Wallet extends Model {
     type: DataType.UUID,
     allowNull: false,
     defaultValue: DataType.UUIDV4,
-    field: 'user_id',
   })
-  userId: string;
+  user_id: string;
 
   @Column({ type: DataType.DECIMAL, allowNull: false, defaultValue: 0 })
   balance: number;
 
-  @CreatedAt
-  @Column({ type: DataType.DATE, field: 'created_at' })
-  createdAt: Date;
+  @Column({ type: DataType.DATE })
+  created_at: Date;
 
-  @UpdatedAt
-  @Column({ type: DataType.DATE, field: 'updated_at' })
-  updatedAt: Date;
+  @Column({ type: DataType.DATE })
+  updated_at: Date;
 
   @BelongsTo(() => User)
   user: User;

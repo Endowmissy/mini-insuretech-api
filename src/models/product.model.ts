@@ -2,17 +2,17 @@ import {
   BeforeCreate,
   BelongsTo,
   Column,
-  CreatedAt,
   ForeignKey,
+  HasOne,
   Model,
   Table,
-  UpdatedAt,
 } from 'sequelize-typescript';
 import { DataType } from 'sequelize-typescript';
 import { v4 as uuidv4 } from 'uuid';
 import { ProductCategory } from './productCategory.model';
+import { Plan } from './plan.model';
 
-@Table({ tableName: 'products', timestamps: true, underscored: true })
+@Table({ tableName: 'products', timestamps: false })
 export class Product extends Model {
   @Column({
     type: DataType.UUID,
@@ -27,9 +27,8 @@ export class Product extends Model {
     type: DataType.UUID,
     allowNull: false,
     defaultValue: DataType.UUIDV4,
-    field: 'product_category_id',
   })
-  productCategoryId: string;
+  product_category_id: string;
 
   @Column({ type: DataType.STRING, allowNull: false })
   name: string;
@@ -40,16 +39,17 @@ export class Product extends Model {
   @Column({ type: DataType.DECIMAL, allowNull: false, defaultValue: 0 })
   price: number;
 
-  @CreatedAt
-  @Column({ type: DataType.DATE, field: 'created_at' })
-  createdAt: Date;
+  @Column({ type: DataType.DATE })
+  created_at: Date;
 
-  @UpdatedAt
-  @Column({ type: DataType.DATE, field: 'updated_at' })
-  updatedAt: Date;
+  @Column({ type: DataType.DATE })
+  updated_at: Date;
 
   @BelongsTo(() => ProductCategory)
   productCategory: ProductCategory;
+
+  @HasOne(() => Plan)
+  plan: Plan;
 
   @BeforeCreate
   static generateUUID(instance: Product) {

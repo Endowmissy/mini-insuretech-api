@@ -1,19 +1,20 @@
 import { UserStatus } from '../enum/user.enum';
 import {
   BeforeCreate,
+  BelongsTo,
   Column,
-  CreatedAt,
+  ForeignKey,
   HasOne,
   Model,
   Table,
-  UpdatedAt,
 } from 'sequelize-typescript';
 import { DataType } from 'sequelize-typescript';
 import { v4 as uuidv4 } from 'uuid';
 import { Wallet } from './wallet.model';
 import { Policy } from './policy.model';
+import { Plan } from './plan.model';
 
-@Table({ tableName: 'users', timestamps: true, underscored: true })
+@Table({ tableName: 'users', timestamps: false })
 export class User extends Model {
   @Column({
     type: DataType.UUID,
@@ -23,11 +24,11 @@ export class User extends Model {
   })
   id: string;
 
-  @Column({ type: DataType.STRING, allowNull: false, field: 'first_name' })
-  firstName: string;
+  @Column({ type: DataType.STRING, allowNull: false })
+  first_name: string;
 
-  @Column({ type: DataType.STRING, allowNull: false, field: 'last_name' })
-  lastName: string;
+  @Column({ type: DataType.STRING, allowNull: false })
+  last_name: string;
 
   @Column({
     type: DataType.STRING,
@@ -43,19 +44,20 @@ export class User extends Model {
   })
   status: string;
 
-  @CreatedAt
-  @Column({ type: DataType.DATE, field: 'created_at' })
-  createdAt: Date;
+  @Column({ type: DataType.DATE })
+  created_at: Date;
 
-  @UpdatedAt
-  @Column({ type: DataType.DATE, field: 'updated_at' })
-  updatedAt: Date;
+  @Column({ type: DataType.DATE })
+  updated_at: Date;
 
   @HasOne(() => Wallet)
   wallet: Wallet;
 
   @HasOne(() => Policy)
   policy: Policy;
+
+  @HasOne(() => Plan)
+  plan: Plan;
 
   // Automatically generate UUID before creating a user
   @BeforeCreate
