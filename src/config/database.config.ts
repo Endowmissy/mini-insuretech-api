@@ -13,4 +13,5 @@ export const databaseConfig: SequelizeModuleOptions = {
   models: [],
   autoLoadModels: true,
   synchronize: false,
+  logging: false,
 };

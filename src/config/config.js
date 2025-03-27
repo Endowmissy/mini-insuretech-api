@@ -1,5 +1,5 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('dotenv').config();
 
 /**
  * Sequelize Configuration for the following environments:
@@ -8,7 +8,7 @@ dotenv.config();
  * - production
  */
 
-export const configOptions = {
+module.exports = {
   development: {
     url: process.env.DATABASE_URL,
     dialect: 'postgres',
@@ -18,7 +18,7 @@ export const configOptions = {
     dialect: 'postgres',
   },
   production: {
-    url: process.env.DATABASE_URL,
+    url: process.env.PROD_DATABASE_URL,
     dialect: 'postgres',
   },
 };
