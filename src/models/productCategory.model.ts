@@ -25,10 +25,10 @@ export class ProductCategory extends Model {
   @Column({ type: DataType.STRING, allowNull: false })
   description: string;
 
-  @Column({ type: DataType.DATE })
+  @Column({ type: DataType.DATE, allowNull: false, defaultValue: DataType.NOW })
   created_at: Date;
 
-  @Column({ type: DataType.DATE })
+  @Column({ type: DataType.DATE, allowNull: false, defaultValue: DataType.NOW })
   updated_at: Date;
 
   @HasMany(() => Product)

@@ -39,10 +39,10 @@ export class Product extends Model {
   @Column({ type: DataType.DECIMAL, allowNull: false, defaultValue: 0 })
   price: number;
 
-  @Column({ type: DataType.DATE })
+  @Column({ type: DataType.DATE, allowNull: false, defaultValue: DataType.NOW })
   created_at: Date;
 
-  @Column({ type: DataType.DATE })
+  @Column({ type: DataType.DATE, allowNull: false, defaultValue: DataType.NOW })
   updated_at: Date;
 
   @BelongsTo(() => ProductCategory)

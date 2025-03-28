@@ -10,7 +10,8 @@ import { DataType } from 'sequelize-typescript';
 import { v4 as uuidv4 } from 'uuid';
 import { Product } from './product.model';
 import { User } from './user.model';
-import { PendingPolicy } from './pendingPolicy';
+import { PendingPolicy } from './pendingPolicy.model';
+import { Plan } from './plan.model';
 
 @Table({ tableName: 'policies', timestamps: false })
 export class Policy extends Model {
@@ -29,6 +30,14 @@ export class Policy extends Model {
     defaultValue: DataType.UUIDV4,
   })
   user_id: string;
+
+  @ForeignKey(() => Plan)
+  @Column({
+    type: DataType.UUID,
+    allowNull: false,
+    defaultValue: DataType.UUIDV4,
+  })
+  plan_id: string;
 
   @ForeignKey(() => Product)
   @Column({
@@ -49,10 +58,10 @@ export class Policy extends Model {
   @Column({ type: DataType.STRING, allowNull: false })
   policy_number: string;
 
-  @Column({ type: DataType.DATE })
+  @Column({ type: DataType.DATE, allowNull: false, defaultValue: DataType.NOW })
   created_at: Date;
 
-  @Column({ type: DataType.DATE })
+  @Column({ type: DataType.DATE, allowNull: false, defaultValue: DataType.NOW })
   updated_at: Date;
 
   @BelongsTo(() => User)

@@ -6,12 +6,14 @@ import { databaseConfig } from './config/database.config';
 import { WinstonModule } from 'nest-winston';
 import logger from './config/logger';
 import { ProductModule } from './product/product.module';
+import { PlanModule } from './plan/plan.module';
 
 @Module({
   imports: [
     SequelizeModule.forRoot({ ...databaseConfig }),
     WinstonModule.forRoot(logger),
     ProductModule,
+    PlanModule,
   ],
   controllers: [AppController],
   providers: [AppService],

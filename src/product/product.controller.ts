@@ -1,13 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Query,
-  Param,
-  Patch,
-  Post,
-  UseGuards,
-} from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { okResponseFormat } from '../utils/responses';
 import logger from '../config/logger';
@@ -21,7 +12,7 @@ export class ProductController {
     logger.info(`::: Fetching Products .........`);
     const products = await this.productService.getProducts();
     logger.info(`::: Products fetched successfully`);
-    return okResponseFormat('Products fetched successfully', products);
+    return okResponseFormat('Products fetched successfully', products, 200);
   }
 
   @Get(':id')
@@ -29,6 +20,6 @@ export class ProductController {
     logger.info(`::: Fetching Product with ID: ${id} .........`);
     const product = await this.productService.getOneProduct(id);
     logger.info(`::: Product with ID: ${id} fetched successfully`);
-    return okResponseFormat('Product fetched successfully', product);
+    return okResponseFormat('Product fetched successfully', product, 200);
   }
 }

@@ -10,7 +10,7 @@ import { DataType } from 'sequelize-typescript';
 import { v4 as uuidv4 } from 'uuid';
 import { User } from './user.model';
 
-@Table({ tableName: 'users', timestamps: false })
+@Table({ tableName: 'wallets', timestamps: false })
 export class Wallet extends Model {
   @Column({
     type: DataType.UUID,
@@ -31,10 +31,10 @@ export class Wallet extends Model {
   @Column({ type: DataType.DECIMAL, allowNull: false, defaultValue: 0 })
   balance: number;
 
-  @Column({ type: DataType.DATE })
+  @Column({ type: DataType.DATE, allowNull: false, defaultValue: DataType.NOW })
   created_at: Date;
 
-  @Column({ type: DataType.DATE })
+  @Column({ type: DataType.DATE, allowNull: false, defaultValue: DataType.NOW })
   updated_at: Date;
 
   @BelongsTo(() => User)
