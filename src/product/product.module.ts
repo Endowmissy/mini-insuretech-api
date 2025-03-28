@@ -7,11 +7,11 @@ import { Product } from '../models/product.model';
 import { WinstonModule } from 'nest-winston';
 import logger from '../config/logger';
 import { ProductCategory } from '../models/productCategory.model';
-import { Plan } from 'src/models/plan.model';
-import { PendingPolicy } from 'src/models/pendingPolicy';
-import { User } from 'src/models/user.model';
-import { Wallet } from 'src/models/wallet.model';
-import { Policy } from 'src/models/policy.model';
+import { Plan } from '../models/plan.model';
+import { PendingPolicy } from '../models/pendingPolicy.model';
+import { User } from '../models/user.model';
+import { Wallet } from '../models/wallet.model';
+import { Policy } from '../models/policy.model';
 
 @Module({
   imports: [

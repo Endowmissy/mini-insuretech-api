@@ -9,6 +9,16 @@ module.exports = {
         allowNull: false,
         defaultValue: Sequelize.UUIDV4,
       },
+      user_id: {
+        type: Sequelize.UUID,
+        allowNull: false,
+        references: {
+          model: 'users',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      },
       plan_id: {
         type: Sequelize.UUID,
         allowNull: false,

@@ -10,7 +10,7 @@ import {
 import { DataType } from 'sequelize-typescript';
 import { v4 as uuidv4 } from 'uuid';
 import { User } from './user.model';
-import { PendingPolicy } from './pendingPolicy';
+import { PendingPolicy } from './pendingPolicy.model';
 import { Product } from './product.model';
 
 @Table({ tableName: 'plans', timestamps: false })
@@ -44,15 +44,15 @@ export class Plan extends Model {
     allowNull: false,
     defaultValue: 0,
   })
-  total_amount: number;
+  amount_paid: number;
 
   @Column({ type: DataType.INTEGER, allowNull: false })
   no_of_products: number;
 
-  @Column({ type: DataType.DATE })
+  @Column({ type: DataType.DATE, allowNull: false, defaultValue: DataType.NOW })
   created_at: Date;
 
-  @Column({ type: DataType.DATE })
+  @Column({ type: DataType.DATE, allowNull: false, defaultValue: DataType.NOW })
   updated_at: Date;
 
   @BelongsTo(() => Product)

@@ -29,7 +29,7 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
-      total_amount: {
+      amount_paid: {
         type: Sequelize.DECIMAL(10, 2),
         allowNull: false,
       },

@@ -11,7 +11,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Plan } from './plan.model';
 import { Product } from './product.model';
 
-@Table({ tableName: 'products', timestamps: false })
+@Table({ tableName: 'pending_policies', timestamps: false })
 export class PendingPolicy extends Model {
   @Column({
     type: DataType.UUID,
@@ -44,10 +44,17 @@ export class PendingPolicy extends Model {
   })
   is_used: boolean;
 
-  @Column({ type: DataType.DATE })
+  @Column({
+    type: DataType.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
+  })
+  is_deleted: boolean;
+
+  @Column({ type: DataType.DATE, allowNull: false, defaultValue: DataType.NOW })
   created_at: Date;
 
-  @Column({ type: DataType.DATE })
+  @Column({ type: DataType.DATE, allowNull: false, defaultValue: DataType.NOW })
   updated_at: Date;
 
   @BelongsTo(() => Plan)
