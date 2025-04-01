@@ -9,11 +9,10 @@ import logger from '../config/logger';
 import { PlanDetailsInterface } from '../interface/plan.interface';
 import { UserRepository } from '../user/user.repo';
 import { Sequelize } from 'sequelize-typescript';
-import { WalletRepository } from 'src/user/wallet.repo';
+import { WalletRepository } from '../user/wallet.repo';
 import { PlanRepository } from './plan.repo';
 import { PendingPolicyRepository } from './pending_poilcy.repo';
 import { PolicyRepository } from './policy.repo';
-import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class PlanService {

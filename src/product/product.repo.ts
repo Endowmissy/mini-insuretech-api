@@ -7,7 +7,9 @@ import { Transaction } from 'sequelize';
 
 @Injectable()
 export class ProductRepository {
-  constructor(@InjectModel(Product) private readonly productModel: ModelCtor<Product>) {}
+  constructor(
+    @InjectModel(Product) private readonly productModel: ModelCtor<Product>,
+  ) {}
 
   // get all products
   async getProducts(): Promise<Product[]> {
@@ -19,8 +21,7 @@ export class ProductRepository {
     return await this.productModel.findOne({
       where: { id },
       include: [ProductCategory],
-      transaction
+      transaction,
     });
   }
-
 }
