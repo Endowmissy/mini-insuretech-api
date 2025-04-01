@@ -3,7 +3,11 @@
   "rootDir": ".",
   "testEnvironment": "node",
   "testRegex": ".e2e-spec.ts$",
+  "collectCoverage": true,
+  "coverageReporters": ["json", "lcov", "text", "clover"],
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
-  }
+  },
+  "modulePathIgnorePatterns": ["<rootDir>/src/migrations", "<rootDir>/node_modules", "<rootDir>/src/seeds"],
+  "globalTeardown": "<rootDir>/test-teardown-globals.ts"
 }

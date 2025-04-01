@@ -1,15 +1,10 @@
-import {
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { ProductRepository } from './product.repo';
-import logger from 'src/config/logger';
+import logger from '../config/logger';
 
 @Injectable()
 export class ProductService {
-  constructor(
-    private readonly productRepository: ProductRepository,
-  ) {}
+  constructor(private readonly productRepository: ProductRepository) {}
 
   async getProducts(): Promise<any> {
     return await this.productRepository.getProducts();
