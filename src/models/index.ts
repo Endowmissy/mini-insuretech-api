@@ -8,7 +8,6 @@ const config = configOptions[env];
 let sequelize: Sequelize;
 if (config.url) {
   sequelize = new Sequelize(config.url, config);
-  console.log('using env file..');
 } else {
   sequelize = new Sequelize(
     config.database,

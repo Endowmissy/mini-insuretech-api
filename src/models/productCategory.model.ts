@@ -32,7 +32,7 @@ export class ProductCategory extends Model {
   updated_at: Date;
 
   @HasMany(() => Product)
-  product: Product[];
+  products: Product[];
 
   @BeforeCreate
   static generateUUID(instance: ProductCategory) {
