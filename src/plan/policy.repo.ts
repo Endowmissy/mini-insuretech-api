@@ -14,7 +14,7 @@ export class PolicyRepository {
   }
 
   // get all activated policies
-  async getActivatedPolicies(plan_id: string): Promise<any> {
+  async getActivatedPolicies(plan_id: string): Promise<Policy> {
     return await this.policyModel.findOne({
       where: { plan_id },
     });

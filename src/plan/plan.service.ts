@@ -13,6 +13,7 @@ import { WalletRepository } from '../user/wallet.repo';
 import { PlanRepository } from './plan.repo';
 import { PendingPolicyRepository } from './pending_poilcy.repo';
 import { PolicyRepository } from './policy.repo';
+import { PendingPolicy } from '../models/pendingPolicy.model';
 
 @Injectable()
 export class PlanService {
@@ -122,10 +123,11 @@ export class PlanService {
 
   async activatePendingPolicy(pending_policy_id: string, plan_id: string) {
     // check if pending policy exist
-    const pendingPolicy = await this.pendingPolicyRepository.getPendingPolicy(
-      pending_policy_id,
-      plan_id,
-    );
+    const pendingPolicy: PendingPolicy =
+      await this.pendingPolicyRepository.getPendingPolicy(
+        pending_policy_id,
+        plan_id,
+      );
 
     if (!pendingPolicy) {
       logger.info(`::: Pending Policy does not exist`);

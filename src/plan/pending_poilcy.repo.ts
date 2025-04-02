@@ -32,7 +32,7 @@ export class PendingPolicyRepository {
   async getPendingPolicy(
     pending_policy_id: string,
     plan_id: string,
-  ): Promise<any> {
+  ): Promise<PendingPolicy> {
     return await this.pendingPolicyModel.findOne({
       where: { id: pending_policy_id, plan_id },
     });
