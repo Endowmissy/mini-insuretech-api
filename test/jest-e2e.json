@@ -3,8 +3,7 @@
   "rootDir": ".",
   "testEnvironment": "node",
   "testRegex": ".e2e-spec.ts$",
-  "collectCoverage": true,
-  "coverageReporters": ["json", "lcov", "text", "clover"],
+  "collectCoverageFrom": ["src/**/*.{js,ts}"],
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
   },
